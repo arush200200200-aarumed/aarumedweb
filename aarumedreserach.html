@@ -1,0 +1,638 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AaruMed - AI Health Partner | Research & Development</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+        
+        :root {
+            --primary: #00bcd4;
+            --secondary: #8e44ad;
+            --dark: #0a0a0f;
+            --accent: #ff6b6b;
+            --text-light: #aaa;
+            --glass: rgba(255,255,255,0.04);
+            --border: rgba(255,255,255,0.1);
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { background: #121212; }
+        body { 
+            margin: 0; padding: 0; min-height: 100vh; 
+            background: #121212; 
+            color: #fff; 
+            font-family: 'Poppins', sans-serif; 
+            overflow-x: hidden; 
+        }
+        
+        /* Header + Nav - Same rakha */
+        .header-top { display: flex; align-items: baseline; gap: 10px; padding: 20px 50px; background: #0a0a0f; }
+        .main-title { margin: 0; font-size: 32px; }
+        .main-title span { color: red; }
+        
+        nav { width: 100%; background: #0a0a0f; }
+        .navbar { 
+            list-style: none; 
+            display: flex; 
+            justify-content: space-between; 
+            padding: 0 50px 20px 50px; 
+            margin: 0; 
+            gap: 10px;
+        }
+        .navbar li a { 
+            text-decoration: none; 
+            color: white; 
+            font-weight: bold; 
+            font-size: clamp(10px, 1.2vw, 14px); 
+            white-space: nowrap;
+            transition: 0.3s;
+        }
+        .navbar li a:hover { color: var(--primary); }
+        .navbar li a.active { color: var(--primary); border-bottom: 2px solid var(--primary); }
+
+        /* Hero Banner - Video Ad */
+        .hero-banner {
+            width: 100%;
+            height: 450px;
+            position: relative;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .hero-banner video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+            z-index: 1;
+        }
+        .hero-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6));
+            z-index: 2;
+            pointer-events: none;
+        }
+        .hero-content {
+            z-index: 3;
+            position: relative;
+            text-align: center;
+            max-width: 900px;
+            padding: 0 20px;
+        }
+        .hero-content h1 {
+            font-size: clamp(40px, 6vw, 80px);
+            font-weight: 800;
+            letter-spacing: 4px;
+            margin-bottom: 20px;
+            text-shadow: 0 10px 40px rgba(0,0,0,0.8);
+        }
+        .hero-content p {
+            font-size: 16px;
+            color: #ddd;
+            line-height: 1.8;
+        }
+
+        /* R&D Intro Section */
+        .rd-intro {
+            padding: 100px 50px;
+            background: #1a1a1a;
+        }
+        .rd-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .rd-wrapper .tag {
+            color: var(--primary);
+            font-size: 12px;
+            letter-spacing: 4px;
+            margin-bottom: 15px;
+            display: block;
+            font-weight: 600;
+        }
+        .rd-wrapper h2 {
+            font-size: clamp(35px, 4vw, 55px);
+            font-weight: 700;
+            margin-bottom: 25px;
+        }
+        .rd-wrapper h2 span {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .rd-wrapper > p {
+            color: var(--text-light);
+            max-width: 800px;
+            margin: 0 auto 60px;
+            line-height: 2;
+            font-size: 15px;
+        }
+
+        /* Featured Image Box - Teri Image */
+        .featured-image-box {
+            max-width: 900px;
+            margin: 0 auto 80px;
+            position: relative;
+            padding: 15px;
+            background: linear-gradient(135deg, rgba(0,188,212,0.2), rgba(142,68,173,0.2));
+            border-radius: 30px;
+            box-shadow: 0 30px 80px rgba(0,188,212,0.3);
+        }
+        .featured-image-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 30px;
+            opacity: 0.3;
+            z-index: 1;
+        }
+        .featured-image-inner {
+            position: relative;
+            z-index: 2;
+            border-radius: 20px;
+            overflow: hidden;
+            background: #0a0a0f;
+        }
+        .featured-image-inner img {
+            width: 100%;
+            height: auto;
+            display: block;
+            aspect-ratio: 16/9;
+            object-fit: cover;
+        }
+        .image-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            padding: 30px 25px 20px;
+            z-index: 3;
+        }
+        .image-caption h4 {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+        .image-caption p {
+            color: var(--text-light);
+            font-size: 13px;
+        }
+
+        /* Research Areas Grid */
+        .research-areas {
+            padding: 100px 50px;
+            background: #0a0a0f;
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+        .section-header .tag {
+            color: var(--primary);
+            font-size: 12px;
+            letter-spacing: 4px;
+            margin-bottom: 15px;
+            display: block;
+            font-weight: 600;
+        }
+        .section-header h2 {
+            font-size: clamp(35px, 4vw, 55px);
+            font-weight: 700;
+        }
+        .areas-grid {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        .area-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 40px 30px;
+            transition: 0.4s;
+            position: relative;
+        }
+        .area-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 60px rgba(0,188,212,0.25);
+            background: rgba(0,188,212,0.05);
+        }
+        .area-icon {
+            width: 65px;
+            height: 65px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            font-size: 28px;
+        }
+        .area-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        .area-card p {
+            color: var(--text-light);
+            line-height: 1.8;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .tech-tag {
+            background: rgba(0,188,212,0.15);
+            border: 1px solid rgba(0,188,212,0.3);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            padding: 80px 50px;
+            background: linear-gradient(135deg, rgba(0,188,212,0.1), rgba(142,68,173,0.1));
+        }
+        .stats-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-item i {
+            font-size: 40px;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        .stat-item h3 {
+            font-size: 42px;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+        .stat-item p {
+            color: var(--text-light);
+            font-size: 13px;
+            letter-spacing: 1px;
+        }
+
+        /* Collaboration Section */
+        .collab-section {
+            padding: 100px 50px;
+            background: #1a1a1a;
+        }
+        .collab-wrapper {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+        .collab-content h2 {
+            font-size: clamp(32px, 4vw, 48px);
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+        .collab-content p {
+            color: var(--text-light);
+            line-height: 2;
+            margin-bottom: 30px;
+            font-size: 15px;
+        }
+        .collab-list {
+            list-style: none;
+        }
+        .collab-list li {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            color: var(--text-light);
+            font-size: 14px;
+        }
+        .collab-list li i {
+            color: var(--primary);
+            font-size: 18px;
+        }
+        .collab-image {
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 30px 80px rgba(142,68,173,0.4);
+        }
+        .collab-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .btn-collab {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 16px 45px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 13px;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+        }
+        .btn-collab:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0,188,212,0.4);
+        }
+
+        /* Footer */
+        footer {
+            background: #0a0a0f;
+            padding: 50px 20px 30px;
+            text-align: center;
+        }
+        .footer-logo {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 25px;
+        }
+        .footer-logo span { color: red; }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+        .footer-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 12px;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+        .footer-links a:hover { color: var(--primary); }
+        .copyright {
+            color: #555;
+            font-size: 12px;
+        }
+
+        /* Medical Disclaimer */
+        .disclaimer {
+            background: rgba(255,0,0,0.1);
+            border-top: 1px solid rgba(255,0,0,0.3);
+            padding: 20px 50px;
+            text-align: center;
+            font-size: 12px;
+            color: #ff9999;
+            line-height: 1.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .collab-wrapper { grid-template-columns: 1fr; gap: 50px; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .header-top { padding: 20px; }
+            .navbar { padding: 0 20px; justify-content: space-around; } 
+            .rd-intro, .research-areas, .collab-section { padding: 60px 20px; }
+            .hero-banner { height: 350px; }
+            .areas-grid { grid-template-columns: 1fr; }
+            .stats-grid { grid-template-columns: 1fr; gap: 30px; }
+            .disclaimer { padding: 20px; }
+            .featured-image-box { margin: 0 20px 60px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header-top">
+        <h1 class="main-title"><span>AARU</span>MED</h1>
+        <h6 class="sub-title">- A UNIT OF ARUSH PHARMATECH</h6>
+    </header>
+
+    <nav>
+        <ul class="navbar">
+                      <li><a href="/aarumed5.html" target="_blank">HOME</a></li>
+              <li><a href="/aarumedabout.html" target="_blank">ABOUT US</a></li>
+              <li><a href="/aarumedservices.html" target="_blank">OUR SERVICES</a></li>
+              <li><a href="/aarumedreserach.html" target="_blank">RESEARCH & DEVELOPMENT</a></li>
+              <li><a href="/aarumed.contact.html" target="_blank">CONTACT US</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Banner - Video Ad -->
+    <section class="hero-banner">
+        <video autoplay loop muted playsinline preload="auto">
+            <source src="/snom.mp4" type="video/mp4">
+        </video>
+        <div class="hero-content">
+            <h1>RESEARCH & DEVELOPMENT</h1>
+            <p>Building the Future of AI-Powered Healthcare for Bharat</p>
+        </div>
+    </section>
+
+    <!-- R&D Intro -->
+    <section class="rd-intro">
+        <div class="rd-wrapper">
+            <span class="tag">INNOVATION LAB</span>
+            <h2>Pushing Boundaries in <span>Medical AI</span></h2>
+            <p>AaruMed ka R&D team din-raat kaam kar raha hai healthcare ko accessible, accurate aur affordable banane ke liye. Hum machine learning, natural language processing aur medical expertise ko combine karke next-gen solutions bana rahe hain jo lakhs Indians ki zindagi badal sakte hain.</p>
+        </div>
+
+        <!-- Featured Image Box - Teri Image -->
+        <div class="featured-image-box">
+            <div class="featured-image-inner">
+                <img src="/pexels-designecologist-975657.jpg" alt="AaruMed R&D Lab">
+                <div class="image-caption">
+                    <h4>AaruMed AI Research Lab</h4>
+                    <p>Where Innovation Meets Healthcare - Developing cutting-edge solutions for India</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Areas -->
+    <section class="research-areas">
+        <div class="section-header">
+            <span class="tag">CORE FOCUS</span>
+            <h2>Our Research Domains</h2>
+        </div>
+
+        <div class="areas-grid">
+            <div class="area-card">
+                <div class="area-icon">
+                    <i class="fa-solid fa-brain"></i>
+                </div>
+                <h3>Medical NLP</h3>
+                <p>Natural Language Processing models jo Hindi, English aur regional languages me symptoms samajh sake. Patient ki bhasha me baat karna hamara goal hai.</p>
+                <div class="tech-tags">
+                    <span class="tech-tag">Transformers</span>
+                    <span class="tech-tag">BERT</span>
+                    <span class="tech-tag">Hindi NLP</span>
+                </div>
+            </div>
+
+            <div class="area-card">
+                <div class="area-icon">
+                    <i class="fa-solid fa-dna"></i>
+                </div>
+                <h3>Disease Prediction</h3>
+                <p>Deep learning models jo symptoms patterns se early disease detection kar sake. Diabetes, Heart disease, Cancer - sab ke liye predictive AI.</p>
+                <div class="tech-tags">
+                    <span class="tech-tag">CNN</span>
+                    <span class="tech-tag">RNN</span>
+                    <span class="tech-tag">Time Series</span>
+                </div>
+            </div>
+
+            <div class="area-card">
+                <div class="area-icon">
+                    <i class="fa-solid fa-microscope"></i>
+                </div>
+                <h3>Drug Discovery AI</h3>
+                <p>Machine learning se nayi dawaiyon ki khoj aur existing medicines ke better alternatives dhundna. Cost kam, effectiveness zyada.</p>
+                <div class="tech-tags">
+                    <span class="tech-tag">Molecular AI</span>
+                    <span class="tech-tag">GANs</span>
+                    <span class="tech-tag">Cheminformatics</span>
+                </div>
+            </div>
+
+            <div class="area-card">
+                <div class="area-icon">
+                    <i class="fa-solid fa-eye"></i>
+                </div>
+                <h3>Medical Imaging AI</h3>
+                <p>X-Ray, MRI, CT Scan images ko AI se analyze karna. Radiologists ki madad ke liye second opinion system develop kar rahe hain.</p>
+                <div class="tech-tags">
+                    <span class="tech-tag">Computer Vision</span>
+                    <span class="tech-tag">ResNet</span>
+                    <span class="tech-tag">YOLO</span>
+                </div>
+            </div>
+
+            <div class="area-card">
+                <div class="area-icon">
+                    <i class="fa-solid fa-mobile-screen"></i>
+                </div>
+                <h3>Telemedicine Tech</h3>
+                <p>Rural areas tak healthcare pahunchane ke liye low-bandwidth video consultation, offline AI, aur smart triage systems bana rahe hain.</p>
+                <div class="tech-tags">
+                    <span class="tech-tag">WebRTC</span>
+                    <span class="tech-tag">Edge AI</span>
+                    <span class="tech-tag">PWA</span>
+                </div>
+            </div>
+
+            <div class="area-card">
+                <div class="area-icon">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <h3>Health Data Security</h3>
+                <p>Blockchain aur advanced encryption se patient data ko 100% secure rakhna. Privacy by design, compliance by default.</p>
+                <div class="tech-tags">
+                    <span class="tech-tag">Blockchain</span>
+                    <span class="tech-tag">HIPAA</span>
+                    <span class="tech-tag">E2E Encryption</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Bar -->
+    <section class="stats-bar">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <i class="fa-solid fa-flask"></i>
+                <h3>15+</h3>
+                <p>ACTIVE PROJECTS</p>
+            </div>
+            <div class="stat-item">
+                <i class="fa-solid fa-users-gear"></i>
+                <h3>25</h3>
+                <p>RESEARCH ENGINEERS</p>
+            </div>
+            <div class="stat-item">
+                <i class="fa-solid fa-file-lines"></i>
+                <h3>8</h3>
+                <p>PAPERS PUBLISHED</p>
+            </div>
+            <div class="stat-item">
+                <i class="fa-solid fa-award"></i>
+                <h3>3</h3>
+                <p>PATENTS FILED</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Collaboration Section -->
+    <section class="collab-section">
+        <div class="collab-wrapper">
+            <div class="collab-content">
+                <h2>Partner With Us</h2>
+                <p>Hum IIT Delhi, AIIMS, aur leading medical institutions ke saath collaborate kar rahe hain. Agar aap researcher, doctor, ya tech enthusiast hain - judiye hamare mission se.</p>
+                <ul class="collab-list">
+                    <li><i class="fa-solid fa-check"></i> Open research positions available</li>
+                    <li><i class="fa-solid fa-check"></i> Internship programs for students</li>
+                    <li><i class="fa-solid fa-check"></i> Clinical trial partnerships</li>
+                    <li><i class="fa-solid fa-check"></i> Open source contributions welcome</li>
+                </ul>
+                <a href="/aarumed.contact.html" class="btn-collab">GET IN TOUCH</a>
+            </div>
+            <div class="collab-image">
+                <img src="/pexels-designecologist-975657.jpg" alt="Collaboration">
+            </div>
+        </div>
+    </section>
+
+    <!-- Disclaimer -->
+    <div class="disclaimer">
+        <strong><i class="fa-solid fa-triangle-exclamation"></i> Research Disclaimer:</strong> AaruMed R&D dwara develop ki ja rahi technologies experimental phase me hain. Ye solutions clinical validation ke baad hi public use ke liye available honge. Hum regulatory compliance aur patient safety ko highest priority dete hain.
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-logo"><span>AARU</span>MED</div>
+        <div class="footer-links">
+            <a href="#">FACEBOOK</a>
+            <a href="#">TWITTER</a>
+            <a href="#">INSTAGRAM</a>
+            <a href="#">LINKEDIN</a>
+        </div>
+        <p class="copyright">© 2026 AaruMed by Arush Pharmatech. All Rights Reserved</p>
+    </footer>
+
+</body>
+</html>
