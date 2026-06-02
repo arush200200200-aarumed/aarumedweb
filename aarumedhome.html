@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AaruMed - AI Health Partner</title>
+    <style>
+        body { margin: 0; padding: 0; min-height: 100vh; background: radial-gradient(circle at top right, #2a0845, #000000); color: #fff; font-family: 'Segoe UI', sans-serif; overflow-x: hidden; }
+
+        .header-top { display: flex; align-items: baseline; gap: 10px; padding: 20px 50px; }
+        .main-title { margin: 0; font-size: 32px; }
+        
+        /* UPDATED NAVBAR: Ab ye auto-resize hoga, scroll nahi */
+        nav { width: 100%; }
+        .navbar { 
+            list-style: none; 
+            display: flex; 
+            justify-content: space-between; /* Space distribute karega */
+            padding: 0 50px 20px 50px; 
+            margin: 0; 
+            gap: 10px;
+        }
+        /* Dynamic font size: Screen choti hone par font chota hota jayega */
+        .navbar li a { 
+            text-decoration: none; 
+            color: white; 
+            font-weight: bold; 
+            font-size: clamp(10px, 1.2vw, 14px); 
+            white-space: nowrap;
+        }
+
+        .hero-container { display: flex; align-items: center; justify-content: space-between; padding: 50px; gap: 30px; }
+        
+        .hero-text { max-width: 500px; }
+        .hero-text h1 { font-size: clamp(30px, 5vw, 60px); line-height: 1.1; margin-bottom: 20px; }
+        .hero-text span { color: #ff00ff; }
+
+        .chat-btn { padding: 15px 30px; background: linear-gradient(90deg, #00bcd4, #8e44ad); border: none; color: white; font-size: 16px; cursor: pointer; border-radius: 50px; }
+
+        img { max-width: 100%; border-radius: 20px; box-shadow: 0 0 30px #8e44ad; }
+        .video-box { padding: 50px; max-width: 800px; }
+        video { width: 100%; border-radius: 15px; }
+
+        .bottom-img1 { padding: 50px; max-width: 600px; }
+        
+        /* Responsive Fixes */
+        @media (max-width: 768px) {
+            .header-top { padding: 20px; }
+            .navbar { padding: 0 20px; justify-content: space-around; } 
+            .hero-container { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header-top">
+        <h1 class="main-title"><span style="color:red">AARU</span>MED</h1>
+        <h6 class="sub-title">- A UNIT OF ARUSH PHARMATECH</h6>
+    </header>
+
+    <nav>
+        <ul class="navbar">
+                       <li><a href="/aarumed5.html" target="_blank">HOME</a></li>
+              <li><a href="/aarumedabout.html" target="_blank">ABOUT US</a></li>
+              <li><a href="/aarumedservices.html" target="_blank">OUR SERVICES</a></li>
+              <li><a href="/aarumedreserach.html" target="_blank">RESEARCH & DEVELOPMENT</a></li>
+              <li><a href="/aarumed.contact.html" target="_blank">CONTACT US</a></li>
+        </ul>
+    </nav>
+
+    <main class="hero-container">
+        <div class="hero-text">
+            <h1>HEALTHCARE <span>REIMAGINED</span> BY AI</h1>
+            <p>Chat with AaruMed AI to analyze your symptoms, get instant insights, and take the first step towards better health.</p>
+            <button class="chat-btn">START AI CONSULTATION</button>
+        </div>
+        
+        <article>
+            <img src="/141b29bb5f1cc4347b458f368251993b.jpg" alt="AI Health" width="400">
+        </article>
+    </main>
+
+    <div class="bottom-img1">
+        <h1>Unifying Health Intelligence</h1>
+        <p>We're building medical AI that can reason across major healthcare modalities. Instead of a patchwork of siloed healthcare AI tools, now ask one system to make sense of scans, images, reports, and prescriptions together.</p>
+    </div>
+
+    <section class="video-box">
+        <h2>SEE <span style="color:skyblue">HOW</span> IT WORKS?</h2>
+        <video controls poster="/7addc46af04e63e7a92a1e8cc3a224cb.jpg">
+            <source src="/Philipp.mp4" type="video/mp4"/>
+        </video>
+    </section>
+
+</body>
+</html>
