@@ -1,0 +1,529 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AaruMed - AI Health Partner | Contact Us</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --primary: #00bcd4;
+            --secondary: #8e44ad;
+            --dark: #0a0a0f;
+            --accent: #ff6b6b;
+            --text-light: #aaa;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { background: #121212; }
+        body { 
+            margin: 0; padding: 0; min-height: 100vh; 
+            background: #121212; 
+            color: #fff; 
+            font-family: 'Poppins', sans-serif; 
+            overflow-x: hidden; 
+        }
+        
+        /* Header + Nav - SAB PAGES JAISA SAME */
+        .header-top { display: flex; align-items: baseline; gap: 10px; padding: 20px 50px; background: #0a0a0f; }
+        .main-title { margin: 0; font-size: 32px; }
+        .main-title span { color: red; }
+        .sub-title { font-size: 11px; color: #aaa; font-weight: 400; }
+        
+        nav { width: 100%; background: #0a0a0f; }
+        .navbar { 
+            list-style: none; 
+            display: flex; 
+            justify-content: space-between; 
+            padding: 0 50px 20px 50px; 
+            margin: 0; 
+            gap: 10px;
+        }
+        .navbar li a { 
+            text-decoration: none; 
+            color: white; 
+            font-weight: bold; 
+            font-size: clamp(10px, 1.2vw, 14px); 
+            white-space: nowrap;
+            transition: 0.3s;
+        }
+        .navbar li a:hover { color: var(--primary); }
+        .navbar li a.active { color: var(--primary); border-bottom: 2px solid var(--primary); }
+
+        /* Hero Banner - ABOUT US/SERVICES JITNA SAME 400px */
+        .hero-banner {
+            width: 100%;
+            height: 400px;
+            position: relative;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .hero-banner video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+            z-index: 1;
+        }
+        .hero-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5));
+            z-index: 2;
+            pointer-events: none;
+        }
+        .hero-content {
+            z-index: 3;
+            position: relative;
+            text-align: center;
+            padding: 0 20px;
+        }
+        .hero-content h1 {
+            font-size: clamp(40px, 6vw, 80px);
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-shadow: 0 10px 40px rgba(0,0,0,0.8);
+            margin-bottom: 15px;
+        }
+        .hero-content p {
+            font-size: 16px;
+            color: #ddd;
+            line-height: 1.8;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Contact Section - Left/Right Horizontal */
+        .contact-section { 
+            padding: 80px 50px; 
+            background: #1a1a1a;
+        }
+        .contact-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        /* Left - Get In Touch */
+        .get-in-touch .subtitle {
+            color: var(--primary);
+            font-size: 12px;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+            display: block;
+        }
+        .get-in-touch h2 {
+            font-size: 42px;
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+        .get-in-touch > p {
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 40px;
+            font-size: 14px;
+        }
+        .contact-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        .detail-item {
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+        }
+        .detail-item i {
+            color: var(--primary);
+            font-size: 20px;
+            margin-top: 3px;
+        }
+        .detail-item strong {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+        .detail-item span {
+            color: var(--text-light);
+            font-size: 13px;
+            line-height: 1.6;
+        }
+        .social-follow {
+            margin-top: 30px;
+        }
+        .social-follow span {
+            display: block;
+            font-size: 12px;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            color: var(--text-light);
+        }
+        .social-icons a {
+            color: white;
+            font-size: 18px;
+            margin-right: 20px;
+            transition: 0.3s;
+        }
+        .social-icons a:hover { color: var(--primary); }
+
+        /* Right - Your Details Form */
+        .your-details h3 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        .your-details > p {
+            color: var(--text-light);
+            font-size: 13px;
+            margin-bottom: 30px;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .form-group { margin-bottom: 20px; }
+        .form-group label {
+            display: block;
+            font-size: 11px;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            color: var(--text-light);
+            font-weight: 600;
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 14px;
+            background: #0a0a0f;
+            border: 1px solid #333;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        .btn-submit {
+            background: #d4a574;
+            color: #0a0a0f;
+            border: none;
+            padding: 16px 50px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .btn-submit:hover {
+            background: #c19660;
+            transform: translateY(-2px);
+        }
+
+        /* Why Choose AaruMed Section */
+        .why-section {
+            width: 100%;
+            padding: 100px 50px;
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('IMAGE_URL_HERE');
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+        }
+        .why-section .subtitle {
+            color: var(--primary);
+            font-size: 12px;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+            display: block;
+        }
+        .why-section h2 {
+            font-size: clamp(40px, 5vw, 70px);
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+        .why-section > p {
+            max-width: 700px;
+            margin: 0 auto 50px;
+            color: var(--text-light);
+            line-height: 1.9;
+            font-size: 15px;
+        }
+        .features-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+        .feature-card {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 40px 30px;
+            border-radius: 15px;
+            transition: 0.3s;
+        }
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 40px rgba(0,188,212,0.2);
+        }
+        .feature-card i {
+            font-size: 40px;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        .feature-card h4 {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+        .feature-card p {
+            color: var(--text-light);
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        /* Footer */
+        footer {
+            background: #0a0a0f;
+            padding: 50px 20px 30px;
+            text-align: center;
+        }
+        .footer-logo {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 25px;
+        }
+        .footer-logo span { color: red; }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+        .footer-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 12px;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+        .footer-links a:hover { color: var(--primary); }
+        .copyright {
+            color: #555;
+            font-size: 12px;
+        }
+
+        /* Medical Disclaimer */
+        .disclaimer {
+            background: rgba(255,0,0,0.1);
+            border-top: 1px solid rgba(255,0,0,0.3);
+            padding: 20px 50px;
+            text-align: center;
+            font-size: 12px;
+            color: #ff9999;
+            line-height: 1.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .contact-wrapper { grid-template-columns: 1fr; gap: 60px; }
+            .contact-details { grid-template-columns: 1fr; }
+            .features-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 768px) {
+            .header-top { padding: 20px; }
+            .navbar { padding: 0 20px; justify-content: space-around; } 
+            .contact-section { padding: 60px 20px; }
+            .hero-banner { height: 300px; }
+            .form-row { grid-template-columns: 1fr; }
+            .disclaimer { padding: 20px; }
+            .why-section { padding: 80px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header-top">
+        <h1 class="main-title"><span>AARU</span>MED</h1>
+        <h6 class="sub-title">- A UNIT OF ARUSH PHARMATECH</h6>
+    </header>
+
+    <nav>
+        <ul class="navbar">
+              <li><a href="/aarumed5.html" target="_blank">HOME</a></li>
+              <li><a href="/aarumedabout.html" target="_blank">ABOUT US</a></li>
+              <li><a href="/aarumedservices.html" target="_blank">OUR SERVICES</a></li>
+              <li><a href="/aarumedreserach.html" target="_blank">RESEARCH & DEVELOPMENT</a></li>
+              <li><a href="/aarumed.contact.html" target="_blank" class="active">CONTACT US</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Banner - 400px HEIGHT + TEXT -->
+    <section class="hero-banner">
+        <video autoplay loop muted playsinline preload="auto">
+            <source src="/snom(1).mp4" type="video/mp4">
+        </video>
+        <div class="hero-content">
+            <h1>CONTACT US</h1>
+            <p>We're here 24x7 for your health queries. AI + Expert Doctors = Instant Support</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="contact-wrapper">
+            <!-- Left Side -->
+            <div class="get-in-touch">
+                <span class="subtitle">KEEP CLOSE</span>
+                <h2>Get In Touch</h2>
+                <p>Bimari se judi koi bhi jaankari chahiye? Free me pucho. Hum aapki madad karenge. AaruMed AI + Expert doctors ke saath 24x7 available hai general health guidance ke liye.</p>
+                
+                <div class="contact-details">
+                    <div class="detail-item">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <div>
+                            <strong>AaruMed HQ</strong>
+                            <span>Arush Pharmatech, <br>New Delhi, India</span>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fa-solid fa-phone"></i>
+                        <div>
+                            <strong>Helpline</strong>
+                            <span>(+91)9335496583 <br>(+91)9335490000</span>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fa-solid fa-envelope"></i>
+                        <div>
+                            <strong>Email Us</strong>
+                            <span>support@aarumed.com <br>help@aarumed.com</span>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fa-solid fa-clock"></i>
+                        <div>
+                            <strong>AI Available</strong>
+                            <span>24x7 Online <br>Expert: 9 AM - 9 PM IST</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="social-follow">
+                    <span>FOLLOW US</span>
+                    <div class="social-icons">
+                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side Form -->
+            <div class="your-details">
+                <h3>Your Details</h3>
+                <p>Let us know how to get back to you.</p>
+                
+                <form id="contactForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>NAME *</label>
+                            <input type="text" name="name" placeholder="Rahul Kumar" required>
+                        </div>
+                        <div class="form-group">
+                            <label>EMAIL ADDRESS *</label>
+                            <input type="email" name="email" placeholder="aapka@email.com" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>SUBJECT *</label>
+                        <input type="text" name="subject" placeholder="Health Query / Symptom Check" required>
+                    </div>
+                    <div class="form-group">
+                        <label>COMMENTS / QUESTIONS *</label>
+                        <textarea name="message" placeholder="Mujhe 3 din se pet dard hai... kya karu?" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit">CONTACT US</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose AaruMed Section -->
+    <section class="why-section">
+        <span class="subtitle">TRUSTED HEALTHCARE</span>
+        <h2>Why Choose AaruMed?</h2>
+        <p>Hamara mission hai har ghar tak sahi health jaankari pahunchana. AI technology aur certified doctors ke saath milke hum dete hain fast, reliable aur confidential medical guidance.</p>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <i class="fa-solid fa-robot"></i>
+                <h4>AI Powered Analysis</h4>
+                <p>Advanced AI aapke symptoms ko samajhkar instant preliminary guidance deta hai, 24x7 available.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fa-solid fa-user-doctor"></i>
+                <h4>Expert Verification</h4>
+                <p>Har AI response ko qualified doctors 24 ghante ke andar review aur verify karte hain.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fa-solid fa-lock"></i>
+                <h4>100% Confidential</h4>
+                <p>Aapka health data end-to-end encrypted hai. Privacy hamari pehli priority hai.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Disclaimer -->
+    <div class="disclaimer">
+        <strong><i class="fa-solid fa-triangle-exclamation"></i> Medical Disclaimer:</strong> AaruMed dwara di gayi jaankari sirf general educational purpose ke liye hai. Ye kisi registered medical practitioner ki diagnosis, treatment ya salah ka vikalp nahi hai. Kisi bhi health problem ke liye hamesha apne doctor se consult karein. Emergency me 108 ya nazdeeki hospital jaayein. Self-medication jaanleva ho sakti hai.
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-logo"><span>AARU</span>MED</div>
+        <div class="footer-links">
+            <a href="#">FACEBOOK</a>
+            <a href="#">TWITTER</a>
+            <a href="#">INSTAGRAM</a>
+            <a href="#">LINKEDIN</a>
+        </div>
+        <p class="copyright">© 2026 AaruMed by Arush Pharmatech. All Rights Reserved</p>
+    </footer>
+
+<script>
+  document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    alert('Dhanyavaad! Aapka message mil gaya. Hum 24 ghante me reply karenge.');
+    this.reset();
+  });
+</script>
+
+</body>
+                          </html>
